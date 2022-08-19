@@ -452,6 +452,7 @@ del, s, strike {
     margin-right: 16rem;
     padding: 0;
     padding-bottom: 1rem;
+    word-break: break-all;
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-header {
@@ -528,7 +529,6 @@ del, s, strike {
     padding: 1rem;
     overflow: hidden;
     line-height: 1.6rem;
-    word-break: break-all;
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-main .social-buttons {
