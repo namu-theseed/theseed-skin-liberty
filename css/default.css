@@ -505,6 +505,7 @@ del, s, strike {
 
 .Liberty .content-wrapper .liberty-content .liberty-content-header .title {
     padding: 1rem;
+    min-height: 65px;
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-header .contentSub {
