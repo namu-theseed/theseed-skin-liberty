@@ -17,8 +17,12 @@ body {
     font-size: 0.95rem;
 }
 
-body, h1, h2, h3, h4, h5, h6, b {
+body, h1, h2, h3, h4, h5, h6 {
     font-family: "Nanum Gothic", "KoPubDotum M", "Noto Sans Korean", "Noto Sans", "Malgun Gothic", "맑은 고딕", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, b {
+    font-family: "Nanum Gothic", "KoPubDotum B", "Noto Sans Korean", "Noto Sans", "Malgun Gothic", "맑은 고딕", sans-serif;
 }
 
 input[type=password] {
