@@ -17,14 +17,8 @@ body {
     font-size: 0.95rem;
 }
 
-body, h1, h2, h3, h4, h5, h6 {
+body, h1, h2, h3, h4, h5, h6, b {
     font-family: "Nanum Gothic", "KoPubDotum M", "Noto Sans Korean", "Noto Sans", "Malgun Gothic", "맑은 고딕", sans-serif;
-    margin: 0;
-}
-
-h1, h2, h3, h4, h5, h6, b {
-    font-family: "Nanum Gothic", "KoPubDotum B", "Noto Sans Korean", "Noto Sans", "Malgun Gothic", "맑은 고딕", sans-serif;
-
 }
 
 input[type=password] {
@@ -55,24 +49,11 @@ h6 {
     font-size: 1.1rem;
 }
 
-ol, ul, p {
-    margin: 0;
-    padding: 0;
-}
-
-p {
-    margin-bottom: 0.8rem;
-}
-
 ol {
     list-style-image: none;
 }
 
 pre {
-    display: block;
-    color: #333;
-    word-break: break-all;
-    word-wrap: break-word;
     background-color: #f5f8fa;
     border: 1px solid #e1e8ed;
     border-radius: 0.35rem;
@@ -81,10 +62,6 @@ pre {
 
 a:focus {
     outline: 0;
-}
-
-p {
-    overflow-wrap: break-word;
 }
 
 ul {
@@ -384,6 +361,8 @@ del, s, strike {
 
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-content .live-recent-list {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-content .live-recent-list li {
@@ -506,6 +485,7 @@ del, s, strike {
 .Liberty .content-wrapper .liberty-content .liberty-content-header .title>h1 {
     color: #000;
     font-weight: bold;
+    margin: 0;
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-header .header-ads {
