@@ -555,6 +555,7 @@ del, s, strike {
 .Liberty .content-wrapper .liberty-footer ul {
     list-style-type: none;
     list-style-image: none;
+    display: inline-block;
     width: 100%;
     padding: 0;
     margin: 0;
