@@ -8,10 +8,6 @@
 
 }
 
-input:hover, button:hover, select:hover {
-    transition: 0.3s;
-}
-
 html {
     font-size: 15px;
     font-smoothing: antialiased;
@@ -127,11 +123,6 @@ textarea {
 
 hr {
     border-top: 1px solid #e1e8ed;
-}
-
-
-html input[type=button]:hover, html input[type=submit]:hover, button:hover, #mw-editform-cancel:hover {
-    background-color: #449d44;
 }
 
 label {
