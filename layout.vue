@@ -30,6 +30,7 @@
                             <nuxt-link to="/License" class="dropdown-item">라이선스</nuxt-link>
                             <a href="#" @click.prevent="$modal.show('theseed-setting');" class="dropdown-item">설정</a>
                             <template v-if="$store.state.session.menus.length">
+                                <div class="dropdown-divider"></div>
                                 <nuxt-link v-for="m in $store.state.session.menus" :to="m.l" v-bind:key="m.l" class="dropdown-item" v-text="m.t"/>
                             </template>
                         </div>
