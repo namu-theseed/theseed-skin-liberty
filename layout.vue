@@ -102,11 +102,6 @@
             </div>
             <div class="container-fluid liberty-content">
                 <div class="liberty-content-header">
-                    <div class="title">
-                        <h1 v-if="$store.state.page.data.document && $store.state.page.data.document.namespace != '문서'"><nuxt-link :to="doc_action_link($store.state.page.data.document, 'w')"><span class="namespace">{{ $store.state.page.data.document.namespace }}:</span>{{ $store.state.page.data.document.title }}</nuxt-link></h1>
-                        <h1 v-else-if="$store.state.page.data.document && $store.state.page.data.document.namespace == '문서'""><nuxt-link :to="doc_action_link($store.state.page.data.document, 'w')">{{ $store.state.page.title }}</nuxt-link></h1>
-                        <h1 v-else>{{ $store.state.page.title }}</h1>
-                    </div>
                     <div class="content-tools" v-if="$store.state.page.viewName === 'wiki'">
                         <div class="btn-group" role="group" aria-label="content-tools">
                             <nuxt-link v-if="$store.state.page.data.starred"
@@ -161,6 +156,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="title">
+                        <h1 v-if="$store.state.page.data.document && $store.state.page.data.document.namespace != '문서'"><nuxt-link :to="doc_action_link($store.state.page.data.document, 'w')"><span class="namespace">{{ $store.state.page.data.document.namespace }}:</span>{{ $store.state.page.data.document.title }}</nuxt-link></h1>
+                        <h1 v-else-if="$store.state.page.data.document && $store.state.page.data.document.namespace == '문서'""><nuxt-link :to="doc_action_link($store.state.page.data.document, 'w')">{{ $store.state.page.title }}</nuxt-link></h1>
+                        <h1 v-else>{{ $store.state.page.title }}</h1>
+                 </div>
                 <div class="liberty-content-main wiki-article">
                     <div v-if="$store.state.session.member && $store.state.session.member.user_document_discuss && $store.state.localConfig['wiki.hide_user_document_discuss'] !== $store.state.session.member.user_document_discuss" class="alert alert-info fade in" id="userDiscussAlert" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
