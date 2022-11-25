@@ -89,7 +89,7 @@
                         <div class="live-recent-header">
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="liberty-recent-tab1">최근 바뀜</a>
+                                    <a class="nav-link active" id="liberty-recent-tab1">최근 변경</a>
                                 </li>
                             </ul>
                         </div>
