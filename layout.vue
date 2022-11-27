@@ -19,16 +19,16 @@
                             <span class="fa fa-gear"></span><span class="hide-title">도구</span>
                         </a>
                         <div class="dropdown-menu" role="menu">
-                            <nuxt-link to="/NeededPages" class="dropdown-item"><span class="fa fa-recycle"></span>작성이 필요한 문서</nuxt-link>
-                            <nuxt-link to="/OrphanedPages" class="dropdown-item"><span class="fa fa-leanpub"></span>고립된 문서</nuxt-link>
-                            <nuxt-link to="/UncategorizedPages" class="dropdown-item"><span class="fa fa-list"></span>분류가 되지 않은 문서</nuxt-link>
-                            <nuxt-link to="/OldPages" class="dropdown-item"><span class="fa fa-undo"></span>편집된 지 오래된 문서</nuxt-link>
-                            <nuxt-link to="/ShortestPages" class="dropdown-item"><span class="fa fa-thumbs-down"></span>내용이 짧은 문서</nuxt-link>
-                            <nuxt-link to="/LongestPages" class="dropdown-item"><span class="fa fa-thumbs-up"></span>내용이 긴 문서</nuxt-link>
-                            <nuxt-link to="/BlockHistory" class="dropdown-item"><span class="fa fa-times-circle"></span>차단 내역</nuxt-link>
-                            <nuxt-link to="/RandomPage" class="dropdown-item"><span class="fa fa-reply"></span>RandomPage</nuxt-link>
-                            <nuxt-link to="/Upload" class="dropdown-item"><span class="fa fa-upload"></span>파일 올리기</nuxt-link>
-                            <nuxt-link to="/License" class="dropdown-item"><span class="fa fa-code"></span>라이선스</nuxt-link>
+                            <nuxt-link to="/NeededPages" class="dropdown-item"><span class="fa fa-recycle"></span> 작성이 필요한 문서</nuxt-link>
+                            <nuxt-link to="/OrphanedPages" class="dropdown-item"><span class="fa fa-leanpub"></span> 고립된 문서</nuxt-link>
+                            <nuxt-link to="/UncategorizedPages" class="dropdown-item"><span class="fa fa-list"></span> 분류가 되지 않은 문서</nuxt-link>
+                            <nuxt-link to="/OldPages" class="dropdown-item"><span class="fa fa-undo"></span> 편집된 지 오래된 문서</nuxt-link>
+                            <nuxt-link to="/ShortestPages" class="dropdown-item"><span class="fa fa-thumbs-down"></span> 내용이 짧은 문서</nuxt-link>
+                            <nuxt-link to="/LongestPages" class="dropdown-item"><span class="fa fa-thumbs-up"></span> 내용이 긴 문서</nuxt-link>
+                            <nuxt-link to="/BlockHistory" class="dropdown-item"><span class="fa fa-times-circle"></span> 차단 내역</nuxt-link>
+                            <nuxt-link to="/RandomPage" class="dropdown-item"><span class="fa fa-reply"></span> RandomPage</nuxt-link>
+                            <nuxt-link to="/Upload" class="dropdown-item"><span class="fa fa-upload"></span> 파일 올리기</nuxt-link>
+                            <nuxt-link to="/License" class="dropdown-item"><span class="fa fa-code"></span> 라이선스</nuxt-link>
                             <template v-if="$store.state.session.menus.length">
                                 <div class="dropdown-divider"></div>
                                 <nuxt-link v-for="m in $store.state.session.menus" :to="m.l" v-bind:key="m.l" class="dropdown-item" v-text="m.t"/>
