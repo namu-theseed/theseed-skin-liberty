@@ -8,7 +8,8 @@ body.theseed-dark-mode {
 }
 
 .theseed-dark-mode .Liberty .content-wrapper .liberty-content .liberty-content-header {
-	background-color: black;
+	background-color: #1F2023;
+    border-color: #555;
 }
 
 .dropdown-menu .dropdown-item:hover {
@@ -24,11 +25,13 @@ body.theseed-dark-mode {
 .theseed-dark-mode .Liberty .content-wrapper .liberty-content .liberty-content-main {
 	background-color: black;
 	color: #ddd;
+    border-color: #555;
 }
 
 .theseed-dark-mode .Liberty .content-wrapper .liberty-footer {
-	background-color: black;
+	background-color: #1F2023;
 	color: #ddd;
+    border-color: #555;
 }
 
 .theseed-dark-mode .Liberty .nav-wrapper {
@@ -66,15 +69,18 @@ body.theseed-dark-mode {
 .theseed-dark-mode a.btn.btn-secondary.tools-btn {
 	background: black;
 	color: #ddd;
+    border-color: #555;
 }
 
 .theseed-dark-mode button.btn.btn-secondary.tools-btn.dropdown-toggle {
 	background: black;
 	color: #ddd;
+    border-color: #555;
 }
 
 .theseed-dark-mode .dropdown-menu.dropdown-menu-right {
 	background: #16171A;
+    border-color: #555;
 }
 
 .theseed-dark-mode .Liberty .nav-wrapper .navbar .navbar-login .login-dropdown-menu .username,
@@ -102,8 +108,14 @@ body.theseed-dark-mode {
 .theseed-dark-mode .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-header .nav .nav-item .nav-link:active,
 .theseed-dark-mode .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-header .nav .nav-item .nav-link:focus,
 .theseed-dark-mode .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-header .nav .nav-item .nav-link:hover {
-	background: black;
+	background-color: #1F2023;
 	color: #ddd;
+    border-color: #555;
+}
+
+.theseed-dark-mode .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-content,
+.theseed-dark-mode .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-content .live-recent-list li {
+    border-color: #555;
 }
 
 .theseed-dark-mode .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-content .live-recent-list .recent-item {
@@ -115,7 +127,8 @@ body.theseed-dark-mode {
 }
 
 .theseed-dark-mode .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-footer {
-	background-color: black;
+	background-color: #1F2023;
+    border-color: #555;
 }
 
 .theseed-dark-mode .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-footer .label {
@@ -141,6 +154,7 @@ body.theseed-dark-mode {
 .theseed-dark-mode .Liberty .nav-wrapper .navbar .form-inline .form-control {
 	background-color: black;
 	color: #ddd;
+    border-color: #555;
 }
 
 .theseed-dark-mode .Liberty .nav-wrapper .navbar .form-inline .form-control::placeholder {
@@ -150,6 +164,7 @@ body.theseed-dark-mode {
 .theseed-dark-mode .Liberty .nav-wrapper .navbar .form-inline .btn {
 	background-color: black;
 	color: #ddd;
+    border-color: #555;
 }
 
 .theseed-dark-mode .Liberty .nav-wrapper .navbar .form-inline .btn:focus,
