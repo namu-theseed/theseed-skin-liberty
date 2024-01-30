@@ -888,9 +888,10 @@ Public License instead of this License.  But first, please read
             </div>
         </div>
         <div class="scroll-buttons">
-            <a class="scroll-toc" href="#toc"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
-            <a id="left" class="scroll-button" href="#top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-            <a id="right" class="scroll-bottom" href="#bottom"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+            <a v-if="$store.state.page.viewName === 'wiki'" class="scroll-button" @click="onScrollToc"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+            <a v-else class="scroll-toc" @click="$modal.show('theseed-setting');"><i class="fa fa-cog" aria-hidden="true"></i></a>
+            <a class="scroll-button" @click="onScrollTop"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+            <a class="scroll-button" @click="onScrollBottom"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
         </div>
         <setting>
             <setting-item-checkbox label="사이드바 고정" ckey="liberty.fixed_sidebar" />
@@ -949,6 +950,15 @@ export default {
             }
 
             this.showEditMessage = !this.showEditMessage;
+        },
+        onScrollTop() {
+            window.scrollBy(0, -window.innerHeight);
+        },
+        onScrollBottom() {
+            window.scrollBy(0, window.innerHeight);
+        },
+        onScrollToc() {
+            document.getElementById("toc")?.scrollIntoView();
         }
     },
     watch: {
@@ -965,7 +975,7 @@ export default {
                 '--liberty-navbar-logo-width': this.$store.state.config['skin.liberty.navbar_logo_width'],
                 '--liberty-navbar-logo-size': this.$store.state.config['skin.liberty.navbar_logo_size'],
                 '--liberty-navbar-logo-padding': this.$store.state.config['skin.liberty.navbar_logo_padding'],
-                '--liberty-navbar-logo-margin': this.$store.state.config['skin.liberty.navbar_logo_margin'],
+                '--liberty-navbar-logo-margin': this.$store.state.cosnfig['skin.liberty.navbar_logo_margin'],
             };
         },
         viewName() {

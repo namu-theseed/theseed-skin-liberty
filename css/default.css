@@ -684,7 +684,6 @@ caption {
 
 
 div.scroll-buttons a {
-    display: inline-block;
     float: left;
     width: 42px;
     height: 42px;
@@ -693,12 +692,10 @@ div.scroll-buttons a {
     border-left: 0;
     text-decoration: none;
     text-align: center;
+    color: white;
     background: rgba(26,26,26,0.9);
     border-bottom: 0;
-}
-
-.scroll-buttons a:link, .scroll-buttons a:visited {
-    color: white;
+    cursor: pointer;
 }
 
 div.scroll-buttons {
