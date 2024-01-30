@@ -975,7 +975,7 @@ export default {
                 '--liberty-navbar-logo-width': this.$store.state.config['skin.liberty.navbar_logo_width'],
                 '--liberty-navbar-logo-size': this.$store.state.config['skin.liberty.navbar_logo_size'],
                 '--liberty-navbar-logo-padding': this.$store.state.config['skin.liberty.navbar_logo_padding'],
-                '--liberty-navbar-logo-margin': this.$store.state.cosnfig['skin.liberty.navbar_logo_margin'],
+                '--liberty-navbar-logo-margin': this.$store.state.config['skin.liberty.navbar_logo_margin'],
             };
         },
         viewName() {
