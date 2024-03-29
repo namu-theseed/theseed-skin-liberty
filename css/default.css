@@ -716,5 +716,10 @@ div.scroll-buttons {
 }
 
 .navbar-fixed-top {
-    position: fixed;
+    position: fixed !important;
+}
+
+.Liberty .nav-wrapper {
+    width: 100%;
+    top: 0;
 }
