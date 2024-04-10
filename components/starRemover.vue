@@ -44,23 +44,21 @@ export default {
         onClickRemove() {
             if (this.selectItem) this.$router.push(this.doc_action_link(this.selectItem, 'member/unstar'));
         },
-        refreshItem(document) {
-            let docs = document.querySelectorAll('.wiki-article div>ul>li>a');
-            for (const doc of docs) {
-                this.itemList.push(doc.innerText);
+        refreshItem() {
+            if (document) {
+                let docs = document.querySelectorAll('.wiki-article div>ul>li>a');
+                for (const doc of docs) {
+                    this.itemList.push(doc.innerText);
+                }
             }
         }
     },
     mounted() {
-        this.$nextTick(() => { 
-            this.refreshItem(document);
-        });
+        this.$nextTick(() => this.refreshItem());
     },
     watch: {
         $route() {
-            this.$nextTick(() => { 
-                this.refreshItem(document);
-            });
+            this.$nextTick(() => this.refreshItem());
         }
     }
 }
