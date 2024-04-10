@@ -21,6 +21,12 @@ button {
     display: inline-block;
     margin-left: 10px;
 }
+
+.theseed-dark-mode select {
+    background-color: #27292d;
+    border-color: #383b40;
+    color: #ddd;
+}
 </style>
 
 <script>
