@@ -46,11 +46,15 @@ export default {
         }
     },
     mounted() {
-        if (document) this.refreshItem(document);
+        this.$nextTick(() => { 
+            this.refreshItem(document);
+        });
     },
     watch: {
         $route() {
-            if (document) this.refreshItem(document);
+            this.$nextTick(() => { 
+                this.refreshItem(document);
+            });
         }
     }
 }
