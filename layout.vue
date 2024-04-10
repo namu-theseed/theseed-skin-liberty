@@ -140,6 +140,7 @@
                     </div>
                     <rev-selector />
                     <from-selector />
+                    <star-remover />
                     <nuxt />
                     <div v-if="$store.state.page.viewName === 'license'">
                         <h2>Liberty skin license</h2>
@@ -194,6 +195,7 @@ import SearchForm from './components/searchForm';
 import ContentTool from './components/contentTool';
 import RevSelector from './components/revSelector';
 import FromSelector from './components/fromSelector';
+import StarRemover from './components/starRemover';
 import License from "raw-loader!./LICENSE";
 
 if (process.browser) {
@@ -214,7 +216,8 @@ export default {
         SearchForm,
         ContentTool,
         RevSelector,
-        FromSelector
+        FromSelector,
+        StarRemover
     },
     data() {
         return {
