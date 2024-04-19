@@ -45,6 +45,7 @@ export default {
             if (this.selectItem) this.$router.push(this.doc_action_link(this.selectItem, 'member/unstar'));
         },
         refreshItem() {
+            this.itemList = [];
             if (document) {
                 let docs = document.querySelectorAll('.wiki-article div>ul>li>a');
                 for (const doc of docs) {
