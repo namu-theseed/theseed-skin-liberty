@@ -171,7 +171,7 @@
             <setting-item-checkbox label="페이지 이동 시 검색 창 초기화" ckey="liberty.reset_search_on_move" default="checked" />
             <setting-item-checkbox label="리버전 선택기" ckey="liberty.rev_selector" default="checked" />
             <setting-item-checkbox label="리버전 편의성 개선" ckey="liberty.rev_convenience" default="checked" />
-            <setting-item-checkbox label="본고딕 대신 나눔고딕을 사용" ckey="liberty.use_nanumgothic" />
+            <setting-item-checkbox label="본고딕 대신 나눔고딕을 사용" ckey="liberty.use_nanumgothic">
         </setting>
     </div>
 </template>
