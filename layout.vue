@@ -44,10 +44,10 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right login-dropdown-menu" aria-labelledby="login-menu">
                             <div v-if="$store.state.session.account.type === 1" class="username dropdown-item">
-                                <b>{{ $store.state.session.account.name }}</b><br>Member
+                                <b :style="$store.state.session.account.style">{{ $store.state.session.account.name }}</b><br>Member
                             </div>
                             <div v-else-if="$store.state.session.account.type === 0" class="username dropdown-item">
-                                <b>{{ $store.state.session.account.name }}</b><br>Please login!
+                                <b :style="$store.state.session.account.style">{{ $store.state.session.account.name }}</b><br>Please login!
                             </div>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item" @click.prevent="$modal.show('theseed-setting');">설정</a>
@@ -119,6 +119,10 @@
                             <small v-else-if="$store.state.page.viewName === 'blame' && $store.state.page.data.rev">(r{{$store.state.page.data.rev}} Blame)</small>
                             <small v-else-if="$store.state.page.viewName === 'wiki' && $store.state.page.data.rev">(r{{$store.state.page.data.rev}} 판)</small>
                         </h1>
+                        <template v-else-if="($store.state.page.viewName === 'contribution' || $store.state.page.viewName === 'contribution_discuss') && $store.state.page.viewName !== 'error'">
+                            <h1 v-if="$store.state.page.data.account.type >= 0">"<span :style="$store.state.page.data.account.style">{{ $store.state.page.data.account.name }}</span>" 기여 목록</h1>
+                            <h1 v-else-if="$store.state.page.data.account.type === -1">&lt;<span :style="{ 'color': 'lightcoral' }">삭제된 사용자</span>&gt; 기여 목록</h1>
+                        </template>
                         <h1 v-else>{{ $store.state.page.title }}</h1>
                     </div>
                 </div>
