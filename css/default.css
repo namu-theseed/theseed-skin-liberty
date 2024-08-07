@@ -16,11 +16,11 @@ body {
 }
 
 body, h1, h2, h3, h4, h5, h6 {
-    font-family: "Noto Sans Korean", "Noto Sans", "Nanum Gothic", "KoPubDotum M", "Malgun Gothic", "맑은 고딕", sans-serif;
+    font-family: "Nanum Gothic", "Noto Sans Korean", "Noto Sans", "KoPubDotum M", "Malgun Gothic", "맑은 고딕", sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, b {
-    font-family:  "Noto Sans Korean", "Noto Sans", "Nanum Gothic", "KoPubDotum B","Malgun Gothic", "맑은 고딕", sans-serif;
+    font-family: "Nanum Gothic", "Noto Sans Korean", "Noto Sans", "KoPubDotum B","Malgun Gothic", "맑은 고딕", sans-serif;
 }
 
 input[type=password] {
