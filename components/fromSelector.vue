@@ -24,6 +24,10 @@ input[type="checkbox"] {
     vertical-align: middle;
 }
 
+button {
+    margin-left: 0.2rem;
+}
+
 button > .fa {
     font-size: 0.9rem;
 }

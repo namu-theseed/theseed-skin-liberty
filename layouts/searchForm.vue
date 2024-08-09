@@ -1,5 +1,5 @@
 <template>
-    <form id="searchform" class="form-inline" v-on:submit.prevent>
+    <form id="searchform" class="form-inline" @submit.prevent>
         <div class="input-group">
             <div class="input-search">
                 <input type="search" name="q" placeholder="검색" accesskey="f" class="form-control" id="searchInput" autocomplete="off" v-on:input="searchText = $event.target.value" v-model="searchTextModel" @blur="blur" @focus="focus" @input="inputChange" @keydown.enter="keyEnter" @keydown.tab="keyEnter" @keydown.up="keyUp" @keydown.down="keyDown">
@@ -16,30 +16,6 @@
         </div>
     </form>
 </template>
-
-<script>
-import AutocompleteMixin from '~/mixins/autocomplete';
-import Common from '~/mixins/common';
-
-export default {
-    mixins: [AutocompleteMixin],
-    methods: {
-        onClickSearch() {
-            if (!this.searchText) return;
-            this.$router.push('/Search?q=' + encodeURIComponent(this.searchText));
-        },
-        onClickMove() {
-            if (!this.searchText) return;
-            this.$router.push(Common.methods.doc_action_link(this.searchText, 'w'));
-        }
-    },
-    watch: {
-        $route() {
-            if (this.$store.state.localConfig["liberty.reset_search_on_move"] !== false) this.reset();
-        }
-    }
-}
-</script>
 
 <style scoped>
 .v-autocomplete-list {
@@ -67,13 +43,40 @@ export default {
     padding: 0.5rem;
     word-break: break-all;
 }
+
 .theseed-dark-mode .v-autocomplete-list-item {
     color: #ddd;
 }
- .v-autocomplete-list-item.v-autocomplete-item-active {
+
+.v-autocomplete-list-item.v-autocomplete-item-active {
     background-color: #f3f6fa;
 }
+
 .theseed-dark-mode .v-autocomplete-list-item.v-autocomplete-item-active {
     background-color: #383b40;
 }
 </style>
+
+<script>
+import AutocompleteMixin from '~/mixins/autocomplete';
+import Common from '~/mixins/common';
+
+export default {
+    mixins: [AutocompleteMixin],
+    methods: {
+        onClickSearch() {
+            if (!this.searchText) return;
+            this.$router.push('/Search?q=' + encodeURIComponent(this.searchText));
+        },
+        onClickMove() {
+            if (!this.searchText) return;
+            this.$router.push(Common.methods.doc_action_link(this.searchText, 'w'));
+        }
+    },
+    watch: {
+        $route() {
+            if (this.$store.state.localConfig["liberty.reset_search_on_move"] !== false) this.reset();
+        }
+    }
+}
+</script>

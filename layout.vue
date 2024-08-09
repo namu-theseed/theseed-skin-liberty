@@ -14,35 +14,41 @@
                     <li class="nav-item">
                         <nuxt-link class="nav-link" to="/random"><span class="fa fa-random"></span><span class="hide-title">임의 문서</span></nuxt-link>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-fix" href="#" data-toggle="dropdown" aria-expanded="false" @click.prevent>
-                            <span class="fa fa-gear"></span><span class="hide-title">도구</span>
-                        </a>
-                        <div class="dropdown-menu" role="menu">
-                            <nuxt-link to="/NeededPages" class="dropdown-item">작성이 필요한 문서</nuxt-link>
-                            <nuxt-link to="/OrphanedPages" class="dropdown-item">고립된 문서</nuxt-link>
-                            <nuxt-link to="/UncategorizedPages" class="dropdown-item">분류가 되지 않은 문서</nuxt-link>
-                            <nuxt-link to="/OldPages" class="dropdown-item">편집된 지 오래된 문서</nuxt-link>
-                            <nuxt-link to="/ShortestPages" class="dropdown-item">내용이 짧은 문서</nuxt-link>
-                            <nuxt-link to="/LongestPages" class="dropdown-item">내용이 긴 문서</nuxt-link>
-                            <nuxt-link to="/BlockHistory" class="dropdown-item">차단 내역</nuxt-link>
-                            <nuxt-link to="/RandomPage" class="dropdown-item">RandomPage</nuxt-link>
-                            <nuxt-link to="/Upload" class="dropdown-item">파일 올리기</nuxt-link>
-                            <nuxt-link to="/License" class="dropdown-item">라이선스</nuxt-link>
-                            <template v-if="$store.state.session.menus.length">
-                                <div class="dropdown-divider"></div>
-                                <nuxt-link v-for="m in $store.state.session.menus" :key="m.l" :to="m.l" class="dropdown-item">{{ m.t }}</nuxt-link> 
+                    <li class="nav-item">
+                        <dropdown>
+                            <template #toggle>
+                                <a class="nav-link dropdown-toggle dropdown-toggle-fix" href="#" @click.prevent>
+                                    <span class="fa fa-gear"></span><span class="hide-title">도구</span>
+                                </a>
                             </template>
-                        </div>
+                            <div class="dropdown-menu" role="menu">
+                                <nuxt-link to="/NeededPages" class="dropdown-item">작성이 필요한 문서</nuxt-link>
+                                <nuxt-link to="/OrphanedPages" class="dropdown-item">고립된 문서</nuxt-link>
+                                <nuxt-link to="/UncategorizedPages" class="dropdown-item">분류가 되지 않은 문서</nuxt-link>
+                                <nuxt-link to="/OldPages" class="dropdown-item">편집된 지 오래된 문서</nuxt-link>
+                                <nuxt-link to="/ShortestPages" class="dropdown-item">내용이 짧은 문서</nuxt-link>
+                                <nuxt-link to="/LongestPages" class="dropdown-item">내용이 긴 문서</nuxt-link>
+                                <nuxt-link to="/BlockHistory" class="dropdown-item">차단 내역</nuxt-link>
+                                <nuxt-link to="/RandomPage" class="dropdown-item">RandomPage</nuxt-link>
+                                <nuxt-link to="/Upload" class="dropdown-item">파일 올리기</nuxt-link>
+                                <nuxt-link to="/License" class="dropdown-item">라이선스</nuxt-link>
+                                <template v-if="$store.state.session.menus.length">
+                                    <div class="dropdown-divider"></div>
+                                    <nuxt-link v-for="m in $store.state.session.menus" :key="m.l" :to="m.l" class="dropdown-item">{{ m.t }}</nuxt-link> 
+                                </template>
+                            </div>
+                        </dropdown>
                     </li>
                 </ul>
                 <div class="navbar-login">
-                    <div class="dropdown login-menu">
-                        <a id="login-menu" class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img v-if="$store.state.session.gravatar_url" class="profile-img" :src="$store.state.session.gravatar_url">
-                            <span v-else class="fa fa-user"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right login-dropdown-menu" aria-labelledby="login-menu">
+                    <dropdown class="login-menu">
+                        <template #toggle>
+                            <a id="login-menu" class="dropdown-toggle" type="button">
+                                <img v-if="$store.state.session.gravatar_url" class="profile-img" :src="$store.state.session.gravatar_url">
+                                <span v-else class="fa fa-user"></span>
+                            </a>
+                        </template>
+                        <div class="dropdown-menu dropdown-menu-right login-dropdown-menu">
                             <div v-if="$store.state.session.account.type === 1" class="username dropdown-item">
                                 <b>{{ $store.state.session.account.name }}</b><br>Member
                             </div>
@@ -68,7 +74,7 @@
                             <nuxt-link v-if="$store.state.session.account.type === 1" :to="{path:'/member/logout',query:{redirect:$route.fullPath}}" class="dropdown-item">로그아웃</nuxt-link>
                             <nuxt-link v-else :to="{path:'/member/login',query:{redirect:$route.fullPath}}" class="dropdown-item">로그인</nuxt-link>
                         </div>
-                    </div>
+                    </dropdown>
                 </div>
                 <search-form />
             </nav>
@@ -166,8 +172,8 @@
 </template>
 
 <style>
+@import "./css/bootstrap.min.css";
 @import "./css/font-awesome.min.css";
-@import "./bootstrap/css/bootstrap.min.css";
 @import "./css/font/Noto Sans KR.css";
 @import "./css/default.css";
 @import './css/default_mobile.css';
@@ -179,22 +185,15 @@ import Common from '~/mixins/common';
 import Alert from '~/components/alert';
 import SeedLinkButton from '~/components/seedLinkButton';
 import LocalDate from '~/components/localDate';
-import RecentCard from './components/recentCard';
-import SearchForm from './components/searchForm';
-import ContentTool from './components/contentTool';
+import RecentCard from './layouts/recentCard';
+import SearchForm from './layouts/searchForm';
+import ContentTool from './layouts/contentTool';
+import Dropdown from './components/dropdown';
 import RevSelector from './components/revSelector';
 import FromSelector from './components/fromSelector';
-import License from "raw-loader!./LICENSE";
 import SettingModal from './components/settingModal';
+import License from "raw-loader!./LICENSE";
 
-if (process.browser) {
-    try {
-        require("./js/jquery-2.2.4.min.js");
-        // require("./js/tether.min.js");
-        require('./bootstrap/js/bootstrap.min.js');
-
-    } catch(e) {}
-}
 export default {
     mixins: [Common],
     components: {
@@ -203,6 +202,7 @@ export default {
         LocalDate,
         RecentCard,
         SearchForm,
+        Dropdown,
         ContentTool,
         RevSelector,
         FromSelector

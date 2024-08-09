@@ -262,7 +262,7 @@ del, s, strike {
     padding: 0.4rem 0;
 }
 
-.Liberty .nav-wrapper .navbar .navbar-login .login-menu>a:after {
+.Liberty .nav-wrapper .navbar .navbar-login .login-menu a:after {
     display: none;
 }
 
@@ -516,6 +516,10 @@ del, s, strike {
     margin-right: 0.1em;
 }
 
+.Liberty .content-wrapper .liberty-content .liberty-content-header .content-tools .dropdown.btn.tools-btn {
+    padding: 0;
+}
+
 .Liberty .content-wrapper .liberty-content .liberty-content-header .content-tools .dropdown-toggle {
     padding: 0.4rem 0.3rem;
     margin-left: -1px;
@@ -570,6 +574,10 @@ del, s, strike {
     font-weight: bold;
     margin: 0;
     line-height: 1.1;
+}
+
+.Liberty .content-wrapper .liberty-content .liberty-content-header .title>h1>small {
+    margin-left: 0.4rem;
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-header .title>h1>a {

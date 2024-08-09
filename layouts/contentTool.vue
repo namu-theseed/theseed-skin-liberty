@@ -27,27 +27,35 @@
             <nuxt-link v-if="toolList.includes('userdoc')" :to="doc_action_link(user_doc($store.state.page.data.account.name), 'w')" class="btn btn-secondary tools-btn">사용자 문서</nuxt-link>
             <a v-if="toolList.includes('block')" href="#" @click.prevent="block" class="btn btn-danger tools-btn">차단</a>
             <template v-if="toolList.includes('contribution') || toolList.includes('raw') || toolList.includes('blame') || toolList.includes('diff') || toolList.includes('revert') || toolList.includes('menu')">
-                <button type="button" class="btn btn-secondary tools-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                <div class="dropdown-menu dropdown-menu-right" role="menu">
-                    <nuxt-link v-if="toolList.includes('contribution')" :to="contribution_link($store.state.page.data.user.uuid)" class="dropdown-item">기여 목록</nuxt-link>
-                    <nuxt-link v-if="toolList.includes('raw')" :to="doc_action_link($store.state.page.data.document, 'raw', rev ? { rev } : undefined)" class="dropdown-item">RAW</nuxt-link>
-                    <nuxt-link v-if="toolList.includes('blame')" :to="doc_action_link($store.state.page.data.document, 'blame', rev ? { rev } : undefined)" class="dropdown-item">Blame</nuxt-link>
-                    <nuxt-link v-if="toolList.includes('diff')" :to="doc_action_link($store.state.page.data.document, 'diff', rev ? { rev, oldrev: rev - 1 } : undefined)" class="dropdown-item">이전 리버전과 비교</nuxt-link>
-                    <nuxt-link v-if="toolList.includes('revert')" :to="doc_action_link($store.state.page.data.document, 'revert', rev ? { rev } : undefined)" class="dropdown-item">이 리버전으로 되돌리기</nuxt-link>
-                    <nuxt-link v-if="toolList.includes('menu')" v-for="m in $store.state.page.data.menus" :key="m.to" :to="m.to" class="dropdown-item">{{ m.title }}</nuxt-link>
-                </div>
+                <dropdown class="btn btn-secondary tools-btn">
+                    <template #toggle>
+                        <div class="dropdown-toggle"><span class="caret"></span></div>
+                    </template>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        <nuxt-link v-if="toolList.includes('contribution')" :to="contribution_link($store.state.page.data.user.uuid)" class="dropdown-item">기여 목록</nuxt-link>
+                        <nuxt-link v-if="toolList.includes('raw')" :to="doc_action_link($store.state.page.data.document, 'raw', rev ? { rev } : undefined)" class="dropdown-item">RAW</nuxt-link>
+                        <nuxt-link v-if="toolList.includes('blame')" :to="doc_action_link($store.state.page.data.document, 'blame', rev ? { rev } : undefined)" class="dropdown-item">Blame</nuxt-link>
+                        <nuxt-link v-if="toolList.includes('diff')" :to="doc_action_link($store.state.page.data.document, 'diff', rev ? { rev, oldrev: rev - 1 } : undefined)" class="dropdown-item">이전 리버전과 비교</nuxt-link>
+                        <nuxt-link v-if="toolList.includes('revert')" :to="doc_action_link($store.state.page.data.document, 'revert', rev ? { rev } : undefined)" class="dropdown-item">이 리버전으로 되돌리기</nuxt-link>
+                        <nuxt-link v-if="toolList.includes('menu')" v-for="m in $store.state.page.data.menus" :key="m.to" :to="m.to" class="dropdown-item">{{ m.title }}</nuxt-link>
+                    </div>
+                </dropdown>
             </template>
         </div>
     </div>
 </template>
 
 <script>
-import Common from '~/mixins/common';
 import { vTooltip } from 'floating-vue';
-    
+import Common from '~/mixins/common';
+import Dropdown from '../components/dropdown';
+
 export default {
     directives: { tooltip: vTooltip },
     mixins: [Common],
+    components: {
+        Dropdown
+    },
     computed: {
         convenience() {
             return this.$store.state.localConfig['liberty.rev_convenience'] !== false;
