@@ -131,7 +131,7 @@
                 <div class="liberty-content-main wiki-article">
                     <alert v-if="isShowACLMessage && $store.state.page.data.edit_acl_message" @close="isShowACLMessage = false" error closable>
                         <span v-html="$store.state.page.data.edit_acl_message" @click="onDynamicContentClick($event)"></span>
-                        <span v-if="requestable"><br v-if="$store.state.page.data.edit_acl_message.includes('\n')">대신 <nuxt-link :to="doc_action_link($store.state.page.data.document, 'new_edit_request')">편집 요청</nuxt-link>을 생성할 수 있습니다.</span>
+                        <span v-if="requestable"><br v-if="$store.state.page.data.edit_acl_message.includes('\n')"> 대신 <nuxt-link :to="doc_action_link($store.state.page.data.document, 'new_edit_request')">편집 요청</nuxt-link>을 생성할 수 있습니다.</span>
                     </alert>
                     <alert v-if="$store.state.session.user_document_discuss && $store.state.localConfig['wiki.hide_user_document_discuss'] !== $store.state.session.user_document_discuss" @close="$store.commit('localConfigSetValue', {key: 'wiki.hide_user_document_discuss', value: $store.state.session.user_document_discuss})" closable theme="primary">
                         현재 진행 중인 <nuxt-link :to="doc_action_link(user_doc($store.state.session.account.name), 'discuss')">사용자 토론</nuxt-link>이 있습니다.
@@ -162,7 +162,7 @@
                     </ul>
                 </div>
                 <div v-if="$store.state.localConfig['liberty.sidebar'] === 'footer'" class="footer-recent">
-                    <recent-card />
+                    <recent-card :limit="8" />
                     <div class="live-recent-footer">
                         <nuxt-link to="/RecentChanges" title="최근 변경내역"><span class="label label-info">더 보기</span></nuxt-link>
                     </div>
@@ -199,7 +199,6 @@ import RevSelector from './components/revSelector';
 import FromSelector from './components/fromSelector';
 import SettingModal from './components/settingModal';
 import License from "raw-loader!./LICENSE";
-import { isMobile } from '~/utils';
 
 export default {
     mixins: [Common],

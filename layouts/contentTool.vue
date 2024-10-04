@@ -1,14 +1,20 @@
 <template>
     <div v-if="main.length" class="content-tools">
         <div class="btn-group">
-            <nuxt-link v-for="l in main" :key="l.to" @click="l.onclick" :to="l.to" class="btn btn-secondary tools-btn" :class="l.class" v-tooltip="l.tooltip" v-text="l.title" v-html="l.html"></nuxt-link>
+            <template v-for="l in main" :key="l.to">
+                <a v-if="l.onclick" @click.prevent="l.onclick" href="#" class="btn btn-secondary tools-btn" :class="l.class" v-tooltip="l.tooltip" v-text="l.title" v-html="l.html"></a>
+                <nuxt-link v-else :to="l.to" class="btn btn-secondary tools-btn" :class="l.class" v-tooltip="l.tooltip" v-text="l.title" v-html="l.html"></nuxt-link>
+            </template>
             <template v-if="menu.length">
                 <dropdown class="btn btn-secondary tools-btn">
                     <template #toggle>
                         <div class="dropdown-toggle"><span class="caret"></span></div>
                     </template>
                     <div class="dropdown-menu dropdown-menu-right" role="menu">
-                        <nuxt-link v-for="m in menu" :key="m.to" @click="m.onclick" :to="m.to" class="dropdown-item" :class="m.class">{{ m.title }}</nuxt-link>
+                        <template v-for="m in menu" :key="m.to">
+                            <a v-if="m.onclick" @click.prevent="m.onclick" href="#" class="dropdown-item" :class="m.class">{{ m.title }}</a>
+                            <nuxt-link v-else :to="m.to" class="dropdown-item" :class="m.class">{{ m.title }}</nuxt-link>
+                        </template>
                     </div>
                 </dropdown>
             </template>
@@ -145,12 +151,12 @@ export default {
                         if (this.data.starred) this.main.push({
                             to: this.doc_action_link(this.data.document, 'member/unstar'),
                             tooltip: "Unstar",
-                            html: `<span class="fa fa-star"></span><span class="star-count">${this.data.star_count}</span>`
+                            html: `<span class="fa fa-star"></span> <span class="star-count">${this.data.star_count}</span>`
                         });
                         else if (this.data.star_count >= 0) this.main.push({
                             to: this.doc_action_link(this.data.document, 'member/star'),
                             tooltip: "Star",
-                            html: `<span class="fa fa-star-o"></span><span class="star-count">${this.data.star_count}</span>`
+                            html: `<span class="fa fa-star-o"></span> <span class="star-count">${this.data.star_count}</span>`
                         });
                         this.main.push({
                             to: this.doc_action_link(this.data.document, 'backlink'),
@@ -163,14 +169,17 @@ export default {
                         });
                         if (this.data.editable === true && this.data.edit_acl_message) this.main.push({
                             onclick: () => this.$emit('onClickEditBtn'),
+                            tooltip: this.data.rev ? "이 리비전에서 편집되는 것이 아닌 최신 리비전에서 편집됩니다." : undefined,
                             html: `<span class="fa fa-pencil-square"></span> 편집 요청`
                         });
                         else if (this.data.editable === false && this.data.edit_acl_message) this.main.push({
                             onclick: () => this.$emit('onClickEditBtn'),
+                            tooltip: this.data.rev ? "이 리비전에서 편집되는 것이 아닌 최신 리비전에서 편집됩니다." : undefined,
                             html: `<span class="fa fa-lock"></span> 편집`
                         });
                         else this.main.push({
                             to: this.doc_action_link(this.data.document, 'edit'),
+                            tooltip: this.data.rev ? "이 리비전에서 편집되는 것이 아닌 최신 리비전에서 편집됩니다." : undefined,
                             html: `<span class="fa fa-edit"></span> 편집`
                         });
                         this.main.push({
@@ -189,7 +198,10 @@ export default {
                             if (this.$store.state.session.quick_block && this.$store.state.localConfig['liberty.admin_convenience'] !== false) {
                                 this.menu.push({
                                     class: 'admin',
-                                    onclick: () => this.block,
+                                    onclick: () => this.openQuickACLGroup({
+                                        username: this.data.document.title,
+                                        note: `${this.doc_fulltitle(this.data.document)} 긴급차단`
+                                    }),
                                     title: "사용자 차단"
                                 });
                                 this.menu.push({
@@ -323,15 +335,25 @@ export default {
                     break;
                 case 'contribution':
                 case 'contribution_discuss':
-                    if (this.data.account.type === 1) this.main.push({
-                        to: this.doc_action_link(this.user_doc(this.data.account.name), 'w'),
+                    this.main.push({
+                        to: this.data.account.type === 1 ? this.doc_action_link(this.user_doc(this.data.account.name), 'w') : '',
+                        class: this.data.account.type === 1 ? '' : 'disabled',
                         title: "사용자 문서"
                     });
                     if (this.$store.state.session.quick_block && this.$store.state.localConfig['liberty.admin_convenience'] !== false) {
                         if (this.data.account.type !== -1) this.menu.push({
                             class: 'admin',
-                            onclick: () => this.block,
+                            onclick: () => this.openQuickACLGroup({
+                                username: this.data.account.type === 1 ? "".concat(this.data.account.name) : undefined,
+                                ip: this.data.account.type === 0 ? this.data.account.name + '/' + (this.data.account.name.indexOf('.') === -1 ? "128" : '32') : undefined,
+                                note: '기여 목록 긴급차단'
+                            }),
                             title: "사용자 차단"
+                        });
+                        if (this.data.account.type === -1 && this.data.account.uuid) this.menu.push({
+                            to: this.doc_action_link(this.user_doc('*' + this.data.account.uuid), 'w'),
+                            class: 'admin',
+                            title: "삭제된 사용자 문서"
                         });
                         this.menu.push({
                             class: 'admin',
@@ -348,13 +370,6 @@ export default {
             }
             if (this.data.menus) this.menu = this.menu.contact(this.data.menus);
         },
-        block() {
-            this.openQuickACLGroup({
-                username: this.$store.state.page.data.account.type === 1 ? "".concat(this.$store.state.page.data.account.name) : undefined,
-                ip: this.$store.state.page.data.account.type === 0 ? "".concat(this.$store.state.page.data.account.name) : undefined,
-                note: "".concat("기여 목록 긴급차단")
-            });
-        },
         async copyUuid(uuid) {
             try {
                 await navigator.clipboard.writeText(uuid);
@@ -366,6 +381,11 @@ export default {
     },
     watch: {
         $route() {
+            this.$nextTick(() => {
+                this.calculate();
+            });
+        },
+        '$store.state.localConfig'() {
             this.$nextTick(() => {
                 this.calculate();
             });

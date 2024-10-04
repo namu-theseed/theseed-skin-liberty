@@ -14,9 +14,13 @@
                 <li><span :class="$style['recent-item']">&nbsp;</span></li>
             </template>
             <template v-else>
-                <li v-for="(r,i) in recent" :key="i">
-                    <nuxt-link :class="[$style['recent-item'], { [$style.removed]: r.status === 'delete' }]" :key="r.document" :to="doc_action_link(r.document, 'w')">[<local-date :date="r.date" :format="getDateType(r.date)" />] {{ r.document }}</nuxt-link>
-                </li>
+                <template v-for="(r,i) in recent" :key="i">
+                    <li v-if="i < limit">
+                        <nuxt-link :class="[$style['recent-item'], { [$style.removed]: r.status === 'delete' }]" :key="r.document" :to="doc_action_link(r.document, 'w')">
+                            [<local-date :date="r.date" :format="getDateType(r.date)" />] {{ r.document }}
+                        </nuxt-link>
+                    </li>
+                </template>
             </template>
         </ul>
     </div>
@@ -75,6 +79,12 @@
 import RecentCardMixin from '~/mixins/recentCard';
 export default {
     mixins: [RecentCardMixin],
+    props: {
+        limit: {
+            type: Number,
+            default: 15
+        }
+    },
     methods: {
         getDateType(date) {
             const now = Math.floor((new Date()).getTime() / 1000);
