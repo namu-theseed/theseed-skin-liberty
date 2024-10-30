@@ -351,6 +351,7 @@ export default {
                         to: this.doc_action_link(this.data.document, 'acl') + '#document.edit_request',
                         title: "ACL"
                     });
+                    break;
                 case 'history':
                     this.main.push({
                         to: this.doc_action_link(this.data.document, 'discuss'),
@@ -438,7 +439,7 @@ export default {
                     break;
                 case '':
                     if (this.$store.state.page.title === '오류') this.main.push({
-                        onclick: () => this.$router.go(-1),
+                        onclick: () => this.$router.back(),
                         title: "이전 화면"
                     });
                     break;
