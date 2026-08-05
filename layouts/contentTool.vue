@@ -328,6 +328,10 @@ export default {
                         title: "이동"
                     });
                     this.main.push({
+                        to: this.doc_action_link(this.data.document, 'copy'),
+                        title: "복사"
+                    });
+                    this.main.push({
                         class: "btn-danger",
                         to: this.doc_action_link(this.data.document, 'delete'),
                         title: "삭제"
