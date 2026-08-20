@@ -1,5 +1,5 @@
 <template>
-    <div class="Liberty" :style="skinConfig">
+    <div class="Liberty">
         <div id="top"></div>
         <div class="nav-wrapper" :class="{ 'navbar-fixed-top': $store.state.localConfig['liberty.fixed_navbar'] === true }">
             <nav class="navbar navbar-dark">
@@ -235,7 +235,8 @@ export default {
     },
     head() {
         return {
-            meta: [{ name: 'theme-color', content: this.brand_color }]
+            meta: [{ name: 'theme-color', content: this.brand_color }],
+            style: [this.skinConfig]
         };
     },
     computed: {
@@ -243,23 +244,30 @@ export default {
             return this.selectByTheme(this.$store.state.config['skin.liberty.brand_color_1'] ?? '#4188f1', '#2d2f34');
         },
         skinConfig() {
-            return {
-                '--liberty-brand-color': this.brand_color,
-                '--liberty-brand-dark-color': this.selectByTheme(this.$store.state.config['skin.liberty.brand_dark_color_1'] ?? this.darkenColor(this.brand_color), '#16171a'),
-                '--liberty-brand-bright-color': this.selectByTheme(this.$store.state.config['skin.liberty.brand_bright_color_1'] ?? this.lightenColor(this.brand_color), '#383b40'),
-                '--liberty-navbar-logo-image': this.$store.state.config['skin.liberty.navbar_logo_image'],
-                '--liberty-navbar-logo-minimum-width': this.$store.state.config['skin.liberty.navbar_logo_minimum_width'],
-                '--liberty-navbar-logo-width': this.$store.state.config['skin.liberty.navbar_logo_width'],
-                '--liberty-navbar-logo-size': this.$store.state.config['skin.liberty.navbar_logo_size'],
-                '--liberty-navbar-logo-padding': this.$store.state.config['skin.liberty.navbar_logo_padding'],
-                '--liberty-navbar-logo-margin': this.$store.state.config['skin.liberty.navbar_logo_margin'],
-                '--brand-color-1': 'var(--liberty-brand-color)',
-                '--brand-color-2': this.selectByTheme(this.$store.state.config['skin.liberty.brand_color_2'] ?? 'var(--liberty-brand-color)', 'var(--liberty-brand-color)'),
-                '--brand-bright-color-1': 'var(--liberty-brand-bright-color)',
-                '--brand-bright-color-2': this.selectByTheme(this.$store.state.config['skin.liberty.brand_bright_color_2'] ?? 'var(--liberty-brand-bright-color)', 'var(--liberty-brand-bright-color)'),
-                '--text-color': this.selectByTheme('#373a3c', '#ddd'),
-                '--article-background-color': this.selectByTheme('#fff', '#000'),
+            const makeStyle = (isDark = false) => {
+                const selectByTheme = (light, dark) => isDark ? dark : light;
+                return Object.entries({
+                    '--liberty-brand-color': selectByTheme(this.$store.state.config['skin.liberty.brand_color_1'] ?? '#4188f1', '#2d2f34'),
+                    '--liberty-brand-dark-color': selectByTheme(this.$store.state.config['skin.liberty.brand_dark_color_1'] ?? this.darkenColor(this.brand_color), '#16171a'),
+                    '--liberty-brand-bright-color': selectByTheme(this.$store.state.config['skin.liberty.brand_bright_color_1'] ?? this.lightenColor(this.brand_color), '#383b40'),
+                    '--liberty-navbar-logo-image': this.$store.state.config['skin.liberty.navbar_logo_image'],
+                    '--liberty-navbar-logo-minimum-width': this.$store.state.config['skin.liberty.navbar_logo_minimum_width'],
+                    '--liberty-navbar-logo-width': this.$store.state.config['skin.liberty.navbar_logo_width'],
+                    '--liberty-navbar-logo-size': this.$store.state.config['skin.liberty.navbar_logo_size'],
+                    '--liberty-navbar-logo-padding': this.$store.state.config['skin.liberty.navbar_logo_padding'],
+                    '--liberty-navbar-logo-margin': this.$store.state.config['skin.liberty.navbar_logo_margin'],
+                    '--brand-color-1': 'var(--liberty-brand-color)',
+                    '--brand-color-2': selectByTheme(this.$store.state.config['skin.liberty.brand_color_2'] ?? 'var(--liberty-brand-color)', 'var(--liberty-brand-color)'),
+                    '--brand-bright-color-1': 'var(--liberty-brand-bright-color)',
+                    '--brand-bright-color-2': selectByTheme(this.$store.state.config['skin.liberty.brand_bright_color_2'] ?? 'var(--liberty-brand-bright-color)', 'var(--liberty-brand-bright-color)'),
+                    '--text-color': selectByTheme('#373a3c', '#ddd'),
+                    '--article-background-color': selectByTheme('#fff', '#000'),
+                }).filter(([, v]) => v).map(([k, v]) => `${k}:${v}`).join(';');
             };
+
+            let style = `body{${makeStyle()}}`;
+            style += `body.theseed-dark-mode{${makeStyle(true)}}`;
+            return style;
         },
         requestable() {
             return this.$store.state.page.data.editable === true && this.$store.state.page.data.edit_acl_message && this.$store.state.page.viewName !== 'notfound';
