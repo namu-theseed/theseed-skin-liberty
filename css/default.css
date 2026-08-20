@@ -321,6 +321,76 @@ del, s, strike {
     background-color: transparent;
     color: #373a3c;
 }
+
+
+.Liberty .nav-wrapper .navbar .navbar-notification {
+    float: right;
+    padding-left: 0.8rem;
+}
+
+.Liberty .nav-wrapper .navbar .navbar-notification .notification-menu {
+    float: left;
+    cursor: pointer;
+    padding: 0.4rem 0;
+}
+.Liberty .nav-wrapper .navbar .navbar-notification .notification-menu a::after{
+    display: none;
+}
+
+.Liberty .nav-wrapper .navbar .navbar-notification .notification-dropdown-menu {
+    min-width: 320px;
+    min-height: 320px;
+}
+
+.Liberty .nav-wrapper .navbar .navbar-notification .notification-dropdown-menu::before, .Liberty .nav-wrapper .navbar .navbar-notification .notification-dropdown-menu::after {
+    bottom: 100%;
+    border: solid transparent;
+    content: " ";
+    position: absolute;
+    left: 0;
+    right: auto;
+}
+
+.Liberty .nav-wrapper .navbar .navbar-notification .notification-dropdown-menu:before {
+    border-bottom-color: #e1e8ed;
+    border-width: 0.8rem;
+    left: auto;
+    right: 0rem;
+}
+
+.Liberty .nav-wrapper .navbar .navbar-notification .notification-dropdown-menu::after {
+    border-bottom-color: #fff;
+    border-width: 0.78rem;
+    left: auto;
+    right: 0rem;
+}
+
+
+.Liberty .nav-wrapper .navbar .navbar-notification .fa {
+    color: #fff;
+    padding: 0.7rem 0;
+    font-size: 1.5rem;
+    line-height: 0.6rem;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.Liberty .nav-wrapper .navbar .navbar-notification .fa.has {
+    position: relative;
+}
+
+.Liberty .nav-wrapper .navbar .navbar-notification .fa.has::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e53935;
+    box-shadow: 0 0 0 1px #fff;
+}
+
 /* 네비 수정 End */
 
 /* 오른쪽 메뉴 수정 */

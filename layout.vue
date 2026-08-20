@@ -36,7 +36,7 @@
                                 <nuxt-link to="/License" class="dropdown-item">라이선스</nuxt-link>
                                 <template v-if="$store.state.session.menus.length">
                                     <div class="dropdown-divider"></div>
-                                    <nuxt-link v-for="m in $store.state.session.menus" :key="m.l" :to="m.l" class="dropdown-item">{{ m.t }}</nuxt-link> 
+                                    <nuxt-link v-for="m in $store.state.session.menus" :key="m.l" :to="m.l" class="dropdown-item">{{ m.t }}</nuxt-link>
                                 </template>
                             </div>
                         </dropdown>
@@ -77,6 +77,19 @@
                         </div>
                     </dropdown>
                 </div>
+                <div class="navbar-notification" v-if="typeof $store.state.session.has_unread_notifications == 'boolean'">
+                    <dropdown class="notification-menu">
+                        <template #toggle>
+                            <a class="dropdown-toggle" type="button">
+                                <span :class="{ fa: true, 'fa-bell': true, has: $store.state.session.has_unread_notifications}"></span>
+                            </a>
+                        </template>
+                        <div class="dropdown-menu dropdown-menu-right notification-dropdown-menu">
+                            <NotificationMenu @click.stop />
+                        </div>
+                    </dropdown>
+                </div>
+
                 <search-form />
             </nav>
         </div>
@@ -133,9 +146,6 @@
                     <alert v-if="isShowACLMessage && $store.state.page.data.edit_acl_message" @close="isShowACLMessage = false" error closable>
                         <span v-html="$store.state.page.data.edit_acl_message" @click="onDynamicContentClick($event)"></span>
                         <span v-if="requestable"><br v-if="$store.state.page.data.edit_acl_message.includes('\n')"> 대신 <nuxt-link :to="doc_action_link($store.state.page.data.document, 'new_edit_request')">편집 요청</nuxt-link>을 생성할 수 있습니다.</span>
-                    </alert>
-                    <alert v-if="$store.state.session.user_document_discuss && $store.state.localConfig['wiki.hide_user_document_discuss'] !== $store.state.session.user_document_discuss" @close="$store.commit('localConfigSetValue', {key: 'wiki.hide_user_document_discuss', value: $store.state.session.user_document_discuss})" closable theme="primary">
-                        현재 진행 중인 <nuxt-link :to="doc_action_link(user_doc($store.state.session.account.name), 'discuss')">사용자 토론</nuxt-link>이 있습니다.
                     </alert>
                     <alert v-if="$store.state.page.viewName === 'notfound' && $store.state.page.data.document.namespace === '문서'" style="line-height: 2.1rem;">
                         '{{ $store.state.page.title }}'을(를) 검색하시겠습니까?
@@ -198,6 +208,7 @@ import ContentTool from './layouts/contentTool';
 import Dropdown from './components/dropdown';
 import SettingModal from './components/settingModal';
 import License from "raw-loader!./LICENSE";
+import NotificationMenu from "~/components/notificationMenu.vue";
 
 export default {
     mixins: [Common],
@@ -208,7 +219,8 @@ export default {
         RecentCard,
         SearchForm,
         Dropdown,
-        ContentTool
+        ContentTool,
+        NotificationMenu
     },
     data() {
         return {
