@@ -40,12 +40,8 @@
 }
 
 .live-recent-content .live-recent-list li {
-    border-bottom: 1px solid #e1e8ed;
+    border-bottom: 1px solid light-dark(#e1e8ed, #777);
     padding: 0.2rem 0.6rem;
-}
-
-:global(.theseed-dark-mode) .live-recent-content .live-recent-list li {
-    border-color: #777;
 }
 
 .live-recent-content .live-recent-list li:last-child {
@@ -54,11 +50,7 @@
 
 .live-recent-content .live-recent-list .recent-item {
     font-size: 0.80rem;
-    color: #373a3c;
-}
-
-:global(.theseed-dark-mode) .live-recent-content .live-recent-list .recent-item {
-	color: #ddd;
+    color: light-dark(#373a3c, #ddd);
 }
 
 .live-recent-content .live-recent-list .recent-item .new {

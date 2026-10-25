@@ -194,7 +194,6 @@
 @import "./css/font/Noto Sans KR.css";
 @import "./css/default.css";
 @import './css/default_mobile.css';
-@import "./css/dark.css";
 </style>
 
 <script>

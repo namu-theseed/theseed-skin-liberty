@@ -56,11 +56,19 @@ ol {
 }
 
 pre {
-    background-color: #f5f8fa;
+    background-color: light-dark(#f5f8fa, #2d2f34);
     border: 1px solid #e1e8ed;
     border-radius: 0.35rem;
     padding: 0.8rem;
     overflow-x: scroll;
+}
+
+a {
+    color: light-dark(#0275d8, #E69720);
+}
+
+a:hover {
+    color: light-dark(#014c8c, #b3771d);
 }
 
 a:focus {
@@ -111,7 +119,8 @@ del, s, strike {
 
 /* 백그라운드 색 지정 */
 .Liberty, body {
-    background-color: #f5f5f5;
+    background-color: light-dark(#f5f5f5, black);
+    color: light-dark(#373a3c, #ddd);
 }
 /* 백그라운드 색 지정 End*/
 
@@ -125,7 +134,7 @@ del, s, strike {
 /* 네비 수정 */
 .Liberty .nav-wrapper {
     min-height: 2.8rem;
-    background-color: var(--liberty-brand-color, #4188f1);
+    background-color: light-dark(var(--liberty-brand-color, #4188f1), #2d2f34);
     position: absolute;
     z-index: 300;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
@@ -173,7 +182,7 @@ del, s, strike {
 }
 
 .Liberty .nav-wrapper .navbar .navbar-nav .nav-item .nav-link:hover {
-	background-color: var(--liberty-brand-dark-color, #214479);
+	background-color: light-dark(var(--liberty-brand-dark-color, #214479), #383b40);
 }
 
 .Liberty .nav-wrapper .navbar .navbar-nav .nav-item .nav-link:hover,
@@ -207,6 +216,12 @@ del, s, strike {
     border-top-left-radius: 0.35rem;
     border-bottom-left-radius: 0.35rem;
     float: none;
+    background-color: light-dark(#fff, black);
+    color: light-dark(#55595c, #ddd);
+}
+
+.Liberty .nav-wrapper .navbar .form-inline .form-control::placeholder {
+    color: light-dark(#999, #ddd);
 }
 
 .Liberty .nav-wrapper .navbar .form-inline .form-control:focus {
@@ -223,13 +238,15 @@ del, s, strike {
 
 .Liberty .nav-wrapper .navbar .form-inline .btn {
     height: 2rem;
-    color: #4f5b63;
+    background-color: light-dark(#fff, black);
+    color: light-dark(#4f5b63, #ddd);
     padding: 0.2rem 0.4rem;
 }
 
 .Liberty .nav-wrapper .navbar .form-inline .btn:hover, .Liberty .nav-wrapper .navbar .form-inline .btn:focus {
-    background-color: var(--liberty-brand-color, #4188f1);
-    color: #fff;
+    background-color: light-dark(var(--liberty-brand-color, #4188f1), #383b40);
+    border-color: light-dark(#adadad, #ddd);
+    color: light-dark(#fff, #ddd);
     outline: 0;
     transition: .3s;
 }
@@ -314,12 +331,13 @@ del, s, strike {
     font-size: 1rem;
     white-space: unset;
     word-break: break-all;
-    padding: 3px 15px
+    padding: 3px 15px;
+    color: light-dark(#373a3c, #ddd);
 }
 
 .Liberty .nav-wrapper .navbar .navbar-login .login-dropdown-menu .username:hover {
     background-color: transparent;
-    color: #373a3c;
+    color: light-dark(#373a3c, #ddd);
 }
 
 
@@ -420,7 +438,7 @@ del, s, strike {
 
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-header .nav .nav-item {
     width: 15rem;
-    border: 1px solid #e1e8ed;
+    border: 1px solid light-dark(#e1e8ed, #777);
     border-top-left-radius: 0.35rem;
     border-top-right-radius: 0.35rem;
     background-color: #f5f8fa;
@@ -442,8 +460,8 @@ del, s, strike {
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-header .nav .nav-item .nav-link:hover,
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-header .nav .nav-item .nav-link:focus,
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-header .nav .nav-item .nav-link:active {
-    color: #373a3c;
-    background-color: #fff;
+    color: light-dark(#373a3c, #ddd);
+    background-color: light-dark(#fff, black);
 }
 
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-header .nav .nav-item .nav-link.active::before,
@@ -459,10 +477,18 @@ del, s, strike {
     border-bottom: 2px solid var(--liberty-brand-color, #4188f1);
 }
 
+.Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-header .nav .nav-item .nav-link.active::before {
+    border-bottom-color: light-dark(var(--liberty-brand-color, #4188f1), #e1e8ed);
+}
+
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-content {
     background-color: #fff;
-    border: 1px solid #e1e8ed;
+    border: 1px solid light-dark(#e1e8ed, #777);
     border-top: 0;
+}
+
+ul#live-recent-list {
+    background-color: light-dark(transparent, black);
 }
 
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-content .live-recent-list {
@@ -472,7 +498,7 @@ del, s, strike {
 }
 
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-content .live-recent-list li {
-    border-bottom: 1px solid #e1e8ed;
+    border-bottom: 1px solid light-dark(#e1e8ed, #777);
     padding: 0.2rem 0.6rem;
 }
 
@@ -495,8 +521,8 @@ del, s, strike {
 }
 
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-footer {
-    background-color: #f5f8fa;
-    border: 1px solid #e1e8ed;
+    background-color: light-dark(#f5f8fa, black);
+    border: 1px solid light-dark(#e1e8ed, #777);
     border-top: 0;
     border-bottom-left-radius: 0.35rem;
     border-bottom-right-radius: 0.35rem;
@@ -505,14 +531,14 @@ del, s, strike {
 }
 
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-footer .label {
-    background-color: var(--liberty-brand-color, #4188f1);
+    background-color: light-dark(var(--liberty-brand-color, #4188f1), #2d2f34);
     padding: 0.4rem;
     font-size: 0.8rem;
     font-weight: 400;
 }
 
 .Liberty .content-wrapper .liberty-sidebar .liberty-right-fixed .live-recent .live-recent-footer .label:hover {
-	background-color: var(--liberty-brand-dark-color, #214479);
+	background-color: light-dark(var(--liberty-brand-dark-color, #214479), #383b40);
 }
 
 .Liberty .content-wrapper .liberty-sidebar .right-ads {
@@ -556,9 +582,9 @@ del, s, strike {
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-header {
-    border: 1px solid #e1e8ed;
+    border: 1px solid light-dark(#e1e8ed, #777);
     border-radius: 0.35rem 0.35rem 0 0;
-    background-color: #f5f8fa;
+    background-color: light-dark(#f5f8fa, black);
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-header .liberty-notice {
@@ -584,7 +610,7 @@ del, s, strike {
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-header .title>h1 {
-    color: #000;
+    color: light-dark(#000, #ddd);
     font-weight: bold;
     margin: 0;
     line-height: 1.1;
@@ -595,11 +621,11 @@ del, s, strike {
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-header .title>h1>a {
-    color: #000;
+    color: light-dark(#000, white);
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-header .title .namespace {
-    color: #545454;
+    color: light-dark(#545454, #c7c7c7);
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-header .header-ads {
@@ -608,9 +634,10 @@ del, s, strike {
 }
 
 .Liberty .content-wrapper .liberty-content .liberty-content-main {
-    border-left: 1px solid #e1e8ed;
-    border-right: 1px solid #e1e8ed;
-    background-color: #fff;
+    border-left: 1px solid light-dark(#e1e8ed, #777);
+    border-right: 1px solid light-dark(#e1e8ed, #777);
+    background-color: light-dark(#fff, black);
+    color: light-dark(#373a3c, #ddd);
     padding: 1rem;
     overflow: visible;
 }
@@ -621,7 +648,7 @@ del, s, strike {
 }
 
 .Liberty .content-wrapper .footer-recent .live-recent-footer {
-    background-color: #f5f8fa;
+    background-color: light-dark(#f5f8fa, black);
     border: 1px solid #e1e8ed;
     border-bottom-left-radius: .35rem;
     border-bottom-right-radius: .35rem;
@@ -676,11 +703,20 @@ del, s, strike {
 
 /* 컨텐츠 하단 수정 */
 .Liberty .content-wrapper .liberty-footer {
-    border: 1px solid #e1e8ed;
+    border: 1px solid light-dark(#e1e8ed, #777);
     border-radius: 0 0 0.35rem 0.35rem;
-    background-color: #f5f8fa;
+    background-color: light-dark(#f5f8fa, black);
+    color: light-dark(#373a3c, #ddd);
     padding: 1rem;
     clear: both;
+}
+
+div#bottom a {
+    color: light-dark(#0275d8, #E69720);
+}
+
+div#bottom a:hover {
+    color: light-dark(#014c8c, #E69720);
 }
 
 .Liberty .content-wrapper .liberty-footer ul {
@@ -699,10 +735,20 @@ del, s, strike {
     font-size: 0.95rem;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
     border-color: #e1e8ed;
+    background-color: light-dark(#fff, #16171A);
+}
+
+a.dropdown-item {
+    color: light-dark(#373a3c, #ddd);
+}
+
+.dropdown-item:focus {
+    background-color: light-dark(#f5f5f5, #383b40);
+    color: light-dark(#2b2d2f, #ddd);
 }
 
 .dropdown-menu .dropdown-item:hover {
-    background-color: var(--liberty-brand-color, #4188f1);
+    background-color: light-dark(var(--liberty-brand-color, #4188f1), #383b40);
     color: #fff;
     transition: 0.3s;
 }
@@ -729,6 +775,11 @@ del, s, strike {
 
 .btn:active, .btn:focus {
     outline: 0;
+}
+
+.btn.btn-secondary.tools-btn {
+    background-color: light-dark(#fff, black);
+    color: light-dark(#373a3c, #ddd);
 }
 
 .input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {

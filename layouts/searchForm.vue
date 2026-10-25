@@ -21,8 +21,8 @@
 .v-autocomplete-list {
     position: absolute;
     z-index: 3;
-    border: 1px solid #CCC;
-    background-color: #fff;
+    border: 1px solid light-dark(#CCC, #383b40);
+    background-color: light-dark(#fff, #2d2f34);
     width: 10.8rem;
 }
 
@@ -32,28 +32,15 @@
     }
 }
 
-.theseed-dark-mode .v-autocomplete-list {
-    background-color: #2d2f34;
-    border: 1px solid #383b40;
-}
-
 .v-autocomplete-list-item {
     cursor: pointer;
-    color: #373a3c;
+    color: light-dark(#373a3c, #ddd);
     padding: 0.5rem;
     word-break: break-all;
 }
 
-.theseed-dark-mode .v-autocomplete-list-item {
-    color: #ddd;
-}
-
 .v-autocomplete-list-item.v-autocomplete-item-active {
-    background-color: #f3f6fa;
-}
-
-.theseed-dark-mode .v-autocomplete-list-item.v-autocomplete-item-active {
-    background-color: #383b40;
+    background-color: light-dark(#f3f6fa, #383b40);
 }
 </style>
 
