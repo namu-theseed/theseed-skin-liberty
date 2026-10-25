@@ -234,16 +234,19 @@ export default {
     },
     head() {
         return {
-            meta: [{ name: 'theme-color', content: this.brand_color }]
+            meta: [{ name: 'theme-color', content: this.theme_color }]
         };
     },
     computed: {
         brand_color() {
-            return this.selectByTheme(this.$store.state.config['skin.liberty.brand_color_1'] ?? '#4188f1', '#2d2f34');
+            return this.$store.state.config['skin.liberty.brand_color_1'] ?? '#4188f1';
+        },
+        theme_color() {
+            return this.$store.state.currentTheme === 'dark' ? '#2d2f34' : this.brand_color;
         },
         skinConfig() {
             return {
-                '--liberty-brand-color': this.brand_color,
+                '--liberty-brand-color': this.selectByTheme(this.brand_color, '#2d2f34'),
                 '--liberty-brand-dark-color': this.selectByTheme(this.$store.state.config['skin.liberty.brand_dark_color_1'] ?? this.darkenColor(this.brand_color), '#16171a'),
                 '--liberty-brand-bright-color': this.selectByTheme(this.$store.state.config['skin.liberty.brand_bright_color_1'] ?? this.lightenColor(this.brand_color), '#383b40'),
                 '--liberty-navbar-logo-image': this.$store.state.config['skin.liberty.navbar_logo_image'],
@@ -256,8 +259,6 @@ export default {
                 '--brand-color-2': this.selectByTheme(this.$store.state.config['skin.liberty.brand_color_2'] ?? 'var(--liberty-brand-color)', 'var(--liberty-brand-color)'),
                 '--brand-bright-color-1': 'var(--liberty-brand-bright-color)',
                 '--brand-bright-color-2': this.selectByTheme(this.$store.state.config['skin.liberty.brand_bright_color_2'] ?? 'var(--liberty-brand-bright-color)', 'var(--liberty-brand-bright-color)'),
-                '--text-color': this.selectByTheme('#373a3c', '#ddd'),
-                '--article-background-color': this.selectByTheme('#fff', '#000'),
             };
         },
         requestable() {
@@ -296,7 +297,7 @@ export default {
             return "#" + ((r < 16 ? "0" : "") + r.toString(16)) + ((g < 16 ? "0" : "") + g.toString(16)) + ((b < 16 ? "0" : "") + b.toString(16));
         },
         selectByTheme(light, dark) {
-            return this.$store.state.currentTheme === 'dark' ? dark : light;
+            return `light-dark(${light}, ${dark})`;
         },
         openSettingModal() {
             this.$vfm.show({ component: SettingModal });
