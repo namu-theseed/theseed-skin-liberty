@@ -109,7 +109,6 @@
 
 <script>
 import { vTooltip } from 'floating-vue';
-import { toast } from "vue-sonner";
 import Common from '~/mixins/common';
 import dropdown from '../components/dropdown';
 
@@ -409,9 +408,9 @@ export default {
         async copyUuid(name, uuid) {
             try {
                 await navigator.clipboard.writeText(uuid);
-                toast(`${name} 사용자의 UUID가 복사되었습니다.`);
+                await this.$toast(`${name} 사용자의 UUID가 복사되었습니다.`);
             } catch {
-                toast("복사하지 못했습니다.");
+                alert("복사하지 못했습니다.");
             }
         }
     },
